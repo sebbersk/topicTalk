@@ -7,7 +7,15 @@
 
 -   Home Page
 
-*   [ ] Home Page
-    -   [ ] Navbar with links (Home,(if logged in)my topics,featured,login/register/logout links)
-    -   [ ] Jumbotron with welcome text (possibly login/register links/form)
-    -   [ ] Footer
+### HTML/CSS
+
+-   [x] Home Page
+    -   [x] Navbar with links (Home,(if logged in)my topics,featured,login/register/logout links)
+    -   [x] Jumbotron with welcome text (possibly register form)
+    -   [x] Footer
+
+### JS
+
+-   [ ] Handle Form Submission
+    -   [ ] Register Form
+    -   [ ] Login Form
