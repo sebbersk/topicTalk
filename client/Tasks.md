@@ -16,6 +16,6 @@
 
 ### JS
 
--   [ ] Handle Form Submission
-    -   [ ] Register Form
-    -   [ ] Login Form
+-   [x] Handle Form Submission
+    -   [x] Register Form
+    -   [x] Login Form
