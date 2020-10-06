@@ -7,13 +7,20 @@
 
 -   [x] Set up express server
     -   [x] npm init -y
-    -   [x] npm install express, nodemon
+    -   [x] npm install express, nodemon, cors
     -   [x] create /Get route
 
 ## Handle Login and Register Route
 
--   [ ] Hanlde Login and Register Route
-    -   [ ] Create "User" Router
-    -   [ ] GET/POST Routes
-    -   [ ] Parse information
-    -   [ ] Return success with user and password
+-   [x] Hanlde Login and Register Route
+    -   [x] Create "auth" Router
+    -   [x] GET/POST Routes
+    -   [x] Receive information
+    -   [x] Return something...
+
+## Store Users
+
+-   [x] Store Users with Mongoose
+    -   [x] Install Mongoose
+    -   [x] Set up schema
+    -   [x] Get User Data and Create User

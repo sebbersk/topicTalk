@@ -19,3 +19,4 @@
 -   [x] Handle Form Submission
     -   [x] Register Form
     -   [x] Login Form
+    -   [x] Make request to server

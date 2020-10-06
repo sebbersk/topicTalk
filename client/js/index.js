@@ -7,12 +7,24 @@ const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}
 loginForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	const formData = new FormData(loginForm);
-	const user = formData.get('username');
+	const username = formData.get('username');
 	const password = formData.get('password');
-	if (userRegex.test(user)) {
+	const body = { username, password };
+	if (userRegex.test(username)) {
 		if (passwordRegex.test(password)) {
 			console.log('Success Login');
 			//Make Request
+			fetch('http://localhost:3000/auth/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(body),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					console.log(data);
+				});
 		} else {
 			console.log('Write a valid password');
 		}
@@ -24,7 +36,7 @@ loginForm.addEventListener('submit', (e) => {
 regForm.addEventListener('submit', (e) => {
 	e.preventDefault();
 	const formData = new FormData(regForm);
-	const user = formData.get('username');
+	const username = formData.get('username');
 	const email = formData.get('email');
 	const password = formData.get('password');
 	const conPassword = formData.get('conPassword');
@@ -32,10 +44,22 @@ regForm.addEventListener('submit', (e) => {
 		console.log('Passwords dont match');
 		return;
 	}
-	if (userRegex.test(user)) {
+	if (userRegex.test(username)) {
 		if (passwordRegex.test(password)) {
 			if (emailRegex.test(email)) {
+				const body = { username, email, password };
 				console.log('Success Register');
+				fetch('http://localhost:3000/auth/register', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(body),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						console.log(data);
+					});
 			} else {
 				console.log('Please input a valid Email');
 			}
