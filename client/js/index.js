@@ -12,7 +12,7 @@ loginForm.addEventListener('submit', (e) => {
 	const body = { username, password };
 	if (userRegex.test(username)) {
 		if (passwordRegex.test(password)) {
-			console.log('Success Login');
+			console.log('Valid input');
 			//Make Request
 			fetch('http://localhost:3000/auth/login', {
 				method: 'POST',
@@ -23,7 +23,8 @@ loginForm.addEventListener('submit', (e) => {
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					console.log(data);
+					if (data.err) console.log(data.msg);
+					else localStorage.setItem('token', data.token);
 				});
 		} else {
 			console.log('Write a valid password');
@@ -58,7 +59,8 @@ regForm.addEventListener('submit', (e) => {
 				})
 					.then((res) => res.json())
 					.then((data) => {
-						console.log(data);
+						if (data.err) console.log(data.msg);
+						else localStorage.setItem('token', data.token);
 					});
 			} else {
 				console.log('Please input a valid Email');

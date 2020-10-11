@@ -16,7 +16,15 @@
 
 ### JS
 
+#### Form Submission
+
 -   [x] Handle Form Submission
     -   [x] Register Form
     -   [x] Login Form
-    -   [x] Make request to server
+    -   [x] Make request to serve
+
+### Store JWT
+
+-   [x] Store JWT
+    -   [x] Get JWT
+    -   [x] Store on local storage

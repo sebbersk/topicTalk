@@ -18,9 +18,25 @@
     -   [x] Receive information
     -   [x] Return something...
 
-## Store Users
+## Register Users
 
--   [x] Store Users with Mongoose
+-   [x] Register Users with Mongoose
     -   [x] Install Mongoose
     -   [x] Set up schema
     -   [x] Get User Data and Create User
+    -   [x] Make sure to have unique usernames
+
+### Hashing and JWT
+
+-   [x] Store Hashed Pwd & send back JWT
+    -   [x] Install bcryptjs & JWT
+    -   [x] Set up hash under Register Route & Login Route
+    -   [x] Store Hashed Password
+    -   [x] Retrieve hashed password and compare
+    -   [x] Send back JWT
+
+## Create Schemas
+
+-   [ ] Create Post and Comment Schema
+    -   [ ] Post: title,body,url?,topic,user,comments,date
+    -   [ ] Comment: Body,user,date (maybe in the future it can have comments on the comment)
