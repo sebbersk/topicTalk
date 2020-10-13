@@ -23,8 +23,21 @@
     -   [x] Login Form
     -   [x] Make request to serve
 
-### Store JWT
+#### Store JWT
 
 -   [x] Store JWT
     -   [x] Get JWT
     -   [x] Store on local storage
+
+## Posts.html
+
+-   Multiple Post Page
+
+### HTML/CSS
+
+-   [x] Multiple Page
+    -   [x] Make Cards for posts
+        -   Contains:
+        -   [x] Title
+        -   [x] Truncated version of body
+        -   [x] If Url was given show link preview as well

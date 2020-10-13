@@ -37,6 +37,6 @@
 
 ## Create Schemas
 
--   [ ] Create Post and Comment Schema
-    -   [ ] Post: title,body,url?,topic,user,comments,date
-    -   [ ] Comment: Body,user,date (maybe in the future it can have comments on the comment)
+-   [x] Create Post and Comment Schema
+    -   [x] Post: title,body,\*url(if we have urls, have title,img,desc),topic,user,comments,date
+    -   [x] Comment: Body,user,date (maybe in the future it can have comments on the comment)<br> \* Link Preview (Web scraping)

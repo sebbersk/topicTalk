@@ -10,7 +10,7 @@
 	flex: 1;
 }
 .footer {
-	position: fixed;
+	position: sticky;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -25,4 +25,22 @@
 .footer a {
 	text-decoration: none;
 	color: #fff;
+}
+
+.img_url {
+	text-decoration: none;
+	color: black;
+}
+.img_url:hover {
+	text-decoration: none;
+	color: #6c757d;
+}
+
+.card-img {
+	display: flex;
+	border: 2px solid black;
+	margin: 10px;
+	height: 100px;
+	align-items: center;
+	justify-content: center;
 }
