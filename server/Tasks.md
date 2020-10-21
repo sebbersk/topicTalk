@@ -40,3 +40,19 @@
 -   [x] Create Post and Comment Schema
     -   [x] Post: title,body,\*url(if we have urls, have title,img,desc),topic,user,comments,date
     -   [x] Comment: Body,user,date (maybe in the future it can have comments on the comment)<br> \* Link Preview (Web scraping)
+
+## Create Routes For Post & Comment
+
+-   [x] Routes Created
+    -   [x] Post: GET Posts, GET Post, POST Post, PUT Post, DELETE Post
+    -   [x] Comment: GET Comments (Maybe... Could be done with Post), POST comment, PUT comment,DELETE comment
+
+### Seed DB for frontend and Send
+
+-   [x] Seed DB for frontend
+
+## Post Route
+
+-   [ ] Handle requests
+    -   [ ] Send Data, Posts and Post (With comments and user)
+    -   [ ] Receive Data, Create, Update, Delete Post

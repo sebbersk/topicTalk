@@ -14,7 +14,10 @@ mongoose.connect('mongodb://localhost:27017/TopicTalk', {
 require('./models/User');
 require('./models/Post');
 require('./models/Comment');
+const seedDB = require('./seedDB');
+seedDB();
 const authRoutes = require('./routes/auth');
+const postRoutes = require('./routes/post');
 
 app.use(cors());
 app.use(express.json());
@@ -25,6 +28,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', authRoutes);
+app.use('/post', postRoutes);
 
 app.listen(port, () => {
 	console.log(`Listening on port ${port}`);

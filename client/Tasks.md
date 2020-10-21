@@ -35,9 +35,32 @@
 
 ### HTML/CSS
 
--   [x] Multiple Page
+-   [x] Multiple Post Page
     -   [x] Make Cards for posts
         -   Contains:
         -   [x] Title
         -   [x] Truncated version of body
         -   [x] If Url was given show link preview as well
+
+### JS
+
+-   [x] Display Posts with JS
+    -   [x] Get Posts from Server (Pagination probably)
+    -   [x] For each post make a card
+    -   [x] Check if Post has link. If so, add img/default-img to card
+    -   [x] Display them.
+
+## Post.html (Single post)
+
+### HTML/CSS
+
+-   [x] Single Post Page
+    -   [x] Make grid
+    -   [x] Show text in card
+    -   [x] If url, show Link preview
+    -   [x] Display Comment
+
+### JS
+
+-   [ ] Display Post
+    -   [ ] Take Data and Make HTML Element

@@ -33,42 +33,43 @@ loginForm.addEventListener('submit', (e) => {
 		console.log('Write a valid Username');
 	}
 });
-
-regForm.addEventListener('submit', (e) => {
-	e.preventDefault();
-	const formData = new FormData(regForm);
-	const username = formData.get('username');
-	const email = formData.get('email');
-	const password = formData.get('password');
-	const conPassword = formData.get('conPassword');
-	if (password !== conPassword) {
-		console.log('Passwords dont match');
-		return;
-	}
-	if (userRegex.test(username)) {
-		if (passwordRegex.test(password)) {
-			if (emailRegex.test(email)) {
-				const body = { username, email, password };
-				console.log('Success Register');
-				fetch('http://localhost:3000/auth/register', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(body),
-				})
-					.then((res) => res.json())
-					.then((data) => {
-						if (data.err) console.log(data.msg);
-						else localStorage.setItem('token', data.token);
-					});
+if (window.location.pathname.split('/').pop() === 'index.html') {
+	regForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+		const formData = new FormData(regForm);
+		const username = formData.get('username');
+		const email = formData.get('email');
+		const password = formData.get('password');
+		const conPassword = formData.get('conPassword');
+		if (password !== conPassword) {
+			console.log('Passwords dont match');
+			return;
+		}
+		if (userRegex.test(username)) {
+			if (passwordRegex.test(password)) {
+				if (emailRegex.test(email)) {
+					const body = { username, email, password };
+					console.log('Success Register');
+					fetch('http://localhost:3000/auth/register', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(body),
+					})
+						.then((res) => res.json())
+						.then((data) => {
+							if (data.err) console.log(data.msg);
+							else localStorage.setItem('token', data.token);
+						});
+				} else {
+					console.log('Please input a valid Email');
+				}
 			} else {
-				console.log('Please input a valid Email');
+				console.log('Write a valid password');
 			}
 		} else {
-			console.log('Write a valid password');
+			console.log('Write a valid Username');
 		}
-	} else {
-		console.log('Write a valid Username');
-	}
-});
+	});
+}

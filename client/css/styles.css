@@ -1,3 +1,8 @@
+body {
+	position: relative;
+	min-height: 100%;
+	padding-bottom: 50px;
+}
 #welcome {
 	display: flex;
 	align-items: center;
@@ -10,7 +15,7 @@
 	flex: 1;
 }
 .footer {
-	position: sticky;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -36,11 +41,14 @@
 	color: #6c757d;
 }
 
-.card-img {
+.posts-img {
 	display: flex;
 	border: 2px solid black;
 	margin: 10px;
 	height: 100px;
 	align-items: center;
 	justify-content: center;
+}
+.card-img-overlay {
+	background-color: rgb(23, 162, 184, 0.6);
 }
