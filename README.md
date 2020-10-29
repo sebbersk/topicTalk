@@ -1,0 +1,3 @@
+# topicTalk
+private project, for learning more frontend and backend using JS and Node
+In progress...
