@@ -54,5 +54,5 @@
 ## Post Route
 
 -   [ ] Handle requests
-    -   [ ] Send Data, Posts and Post (With comments and user)
+    -   [x] Send Data, Posts and Post (With comments and user)
     -   [ ] Receive Data, Create, Update, Delete Post

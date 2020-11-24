@@ -15,7 +15,7 @@ require('./models/User');
 require('./models/Post');
 require('./models/Comment');
 const seedDB = require('./seedDB');
-seedDB();
+//seedDB();
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/post');
 

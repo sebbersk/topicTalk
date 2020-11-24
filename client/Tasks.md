@@ -62,5 +62,5 @@
 
 ### JS
 
--   [ ] Display Post
-    -   [ ] Take Data and Make HTML Element
+-   [x] Display Post
+    -   [x] Take Data and Make HTML Element

@@ -1,57 +1,98 @@
-const postContainer = document.querySelector('.post-container');
-
-listPosts();
-
-function listPosts() {
-	fetch('http://localhost:3000/post/')
+const query = window.location.search;
+const urlParam = new URLSearchParams(query);
+const id = urlParam.get('id');
+const div = document.querySelector('.container');
+displayPost();
+function displayPost() {
+	fetch(`http://localhost:3000/post/${id}`)
 		.then((res) => res.json())
 		.then((data) => {
 			console.log(data);
-			data.forEach((post) => {
-				let div = document.createElement('div');
-				div.className = 'card mb-3';
-				div.innerHTML = `<div class="row no-gutters">
-                ${
-					post.url
-						? `<div class="col-md-4"> 
-						<a class='img_url' href=${post.url} target='_blank'>
-                            ${
-								post.url_img
-									? `<img
-                            src=${post.url_img}
-                            class='posts-img'
-                            alt='...'
-                        />`
-									: `<div class="posts-img">
-                        <i class="fas fa-link fa-3x"></i>
-                    </div>`
-							} 
-							
-						</a>`
-						: ''
-				}
-
-                </div>
-                <div class="${post.url ? 'col-md-8' : ''}">
-                    <a
-                        href="./post.html?id=${post._id}"
-                        style="text-decoration: none; color: black"
-                    >
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                ${post.title}
-                            </h5>
+			const contentDiv = document.createElement('div');
+			contentDiv.className = 'post';
+			contentDiv.innerHTML = `
+				<div class="row">
+					<div class="col-md-8">
+						<div class="card border-info mb-3">
+							<div class="card-header">${data.title}</div>
+							<div class="card-body text-info">
+								<p class="card-text">
+									${data.body}
+								</p>
+							</div>
+						</div>
+                    </div>
+                    ${
+						data.url
+							? `<div class="col-md-4">
+                    <div class="card bg-white text-white">
+                     ${
+							data.url_img
+								? `
+                                 <img
+                     src=${data.url_img}
+                     class="card-img"
+                     alt="..."
+                 />`
+								: `<div class="posts-img">
+                                <a class="post-url"href=${data.url} target="_blank" >
+                                <i class="fas fa-link fa-3x"></i>
+                                
+                                
+                            </div>`
+						}
+                        <a class="post-url" href=${data.url} target="_blank" >
+                        <div class="card-img-overlay">
+                        
+                        ${data.url_title ? `<h5 class="card-title">${data.url_title}</h5>` : ''}
+                            
                             <p class="card-text">
-                                ${post.body.slice(100)}...
-                            </p>
+                                ${
+									data.url_desc
+										? `<p class="card-text"> ${truncate(data.url_desc)}  </p>`
+										: ''
+								}
+                           
+                        </div>
+                        </a>
+                    </div>
+                </div>`
+							: ''
+					}
+				
+				</div>
+			<div class="row">
+				<div class="col-md-8">
+					<h3>Comments</h3>
+                    <div class="comments">
+                    ${
+						data.comments.length
+							? data.comments.forEach((comment) => {
+									`<div class="card border-secondary mb-3">
+                        <div class="card-body text-secondary">
                             <p class="card-text">
-                                <small class="text-muted">${new Date(post.date)}</small>
+                                Some quick example text to build on the card title and make up
+                                the bulk of the card's content.
                             </p>
                         </div>
-                    </a>
-                </div>
-            </div>`;
-				postContainer.appendChild(div);
-			});
+                        <div class="card-footer">
+                            <span>Written by <b>User</b></span> <span>DATE</span>
+                        </div>
+                    </div>`;
+							  })
+							: ''
+					}
+						
+					</div>
+				</div>
+			</div>
+        </div>`;
+			div.appendChild(contentDiv);
 		});
+}
+function truncate(s) {
+	if (s.length > 60) {
+		return s.slice(0, 60) + '...';
+	}
+	return s;
 }

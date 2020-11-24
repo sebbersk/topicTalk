@@ -48,7 +48,15 @@ body {
 	height: 100px;
 	align-items: center;
 	justify-content: center;
+	z-index: 1;
 }
 .card-img-overlay {
 	background-color: rgb(23, 162, 184, 0.6);
+}
+.post-url {
+	color: #fff;
+	text-decoration: none;
+}
+.post-url:hover {
+	color: #ddd;
 }

@@ -7,8 +7,7 @@ const postSchema = new Schema({
 	url: { type: String },
 	url_title: { type: String },
 	url_img: { type: String },
-	ulr_desc: { type: String },
-	topic: { type: String, required: true },
+	url_desc: { type: String },
 	user: {
 		id: {
 			type: mongoose.Schema.Types.ObjectId,
