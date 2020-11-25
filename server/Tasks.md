@@ -53,6 +53,6 @@
 
 ## Post Route
 
--   [ ] Handle requests
+-   [x] Handle requests
     -   [x] Send Data, Posts and Post (With comments and user)
-    -   [ ] Receive Data, Create, Update, Delete Post
+    -   [x] Receive Data, Create, Update, Delete Post

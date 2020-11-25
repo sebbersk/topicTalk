@@ -53,25 +53,52 @@ router.post('/', async (req, res) => {
 				'';
 			const newPost = new Post({ title, body, url, url_title, url_img, url_desc });
 			const post = await newPost.save();
-			res.status(200).json({ msg: 'Your post have been created', id: post._id });
+			res.status(200).json({ msg: 'Your post has been created', id: post._id });
 		} catch (e) {
-			if (e.errno === 'ECONNREFUSED') {
-				new Post({ title, body }).save().then((post) => {
-					res.status(200).json({ msg: 'Your post have been created', id: post._id });
-				});
-			}
+			res.status(500).json({
+				msg: 'Something went wrong on our part... Please try again',
+				err: true,
+			});
 		}
 	}
 	new Post({ title, body }).save().then((post) => {
-		res.status(200).json({ msg: 'Your post have been created', id: post._id });
+		res.status(200).json({ msg: 'Your post has been created', id: post._id });
 	});
 });
 
 router.put('/:id', (req, res) => {
-	res.json({ msg: 'Updated your post' });
+	const { title, body } = req.body;
+	Post.findById(req.params.id).then((post) => {
+		if (post) {
+			post.title = title;
+			post.body = body;
+			post.save().then((post) => {
+				res.status(200).json({ msg: 'Your post has been updated', id: post._id });
+			});
+		} else {
+			res.status(500).json({
+				msg: 'No post found...',
+				err: true,
+			});
+		}
+	});
 });
 router.delete('/:id', (req, res) => {
-	res.json({ msg: 'Post deleted' });
+	Post.findById(req.params.id).then((post) => {
+		if (post) {
+			post.comments.forEach((id) => {
+				Comment.remove({ _id: id }).then(() => console.log('Comment removed'));
+			});
+			Post.remove({ _id: req.params.id }).then(() => {
+				res.status(200).json({ msg: 'Your post has been deleted', id: post._id });
+			});
+		} else {
+			res.status(500).json({
+				msg: 'No post found...',
+				err: true,
+			});
+		}
+	});
 });
 
 module.exports = router;
