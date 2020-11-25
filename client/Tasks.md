@@ -64,3 +64,11 @@
 
 -   [x] Display Post
     -   [x] Take Data and Make HTML Element
+
+## To all
+
+### JS
+
+-   [ ] Fix Navbar & Footer display (Logged in ?)
+-   [ ] If logged in make "add post" visible (possibly in navbar?)
+-   [ ] If logged in make "add comment" visible in a post

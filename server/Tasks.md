@@ -56,3 +56,22 @@
 -   [x] Handle requests
     -   [x] Send Data, Posts and Post (With comments and user)
     -   [x] Receive Data, Create, Update, Delete Post
+
+## Comment Route
+
+-   [x] Handle requests
+    -   [x] Post Comments, Update Comments, Delete Comments
+
+## Post Route
+
+-   [x] Send comments with post.
+
+## Auth
+
+-   [] Check that User is Authorized/Authenticated
+    -   [ ] Implement Auth Logic with JWT
+        -   [ ] Valid JWT
+        -   [ ] Store User in req
+        -   [ ] More...?
+    -   [ ] To post/delete/update Posts
+    -   [ ] To post/delete/update Comments
