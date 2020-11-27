@@ -68,10 +68,10 @@
 
 ## Auth
 
--   [] Check that User is Authorized/Authenticated
-    -   [ ] Implement Auth Logic with JWT
-        -   [ ] Valid JWT
-        -   [ ] Store User in req
-        -   [ ] More...?
-    -   [ ] To post/delete/update Posts
-    -   [ ] To post/delete/update Comments
+-   [x] Check that User is Authorized/Authenticated
+    -   [x] Implement Auth Logic with JWT
+        -   [x] Valid JWT
+        -   [x] Store User in req
+        -   [x] More...?
+    -   [x] To post/delete/update Posts
+    -   [x] To post/delete/update Comments

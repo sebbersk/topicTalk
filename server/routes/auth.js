@@ -15,7 +15,7 @@ router.post('/login', (req, res) => {
 					if (equal) {
 						const token = jwt.sign(
 							{
-								data: 'TopicTalk',
+								data: foundUser.id,
 								exp: Math.floor(Date.now() / 1000) + 60 * 60 * 2,
 							},
 							process.env.JWT_SECRET,

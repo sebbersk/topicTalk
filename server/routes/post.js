@@ -5,7 +5,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Post = mongoose.model('posts');
 const Comment = mongoose.model('comments');
-
+const auth = require('../helper/auth');
 // POST ROUTES //
 router.get('/', (req, res) => {
 	Post.find()
@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 		});
 });
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
 	const { title, body, url } = req.body;
 	if (url) {
 		try {
@@ -70,10 +70,10 @@ router.post('/', async (req, res) => {
 	});
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', auth, (req, res) => {
 	const { title, body } = req.body;
 	Post.findById(req.params.id).then((post) => {
-		if (post) {
+		if (post && post.user.id == req.user) {
 			post.title = title;
 			post.body = body;
 			post.save().then((post) => {
@@ -87,9 +87,9 @@ router.put('/:id', (req, res) => {
 		}
 	});
 });
-router.delete('/:id', (req, res) => {
+router.delete('/:id', auth, (req, res) => {
 	Post.findById(req.params.id).then((post) => {
-		if (post) {
+		if (post && post.user.id == req.user) {
 			post.comments.forEach((id) => {
 				Comment.remove({ _id: id }).then(() => console.log('Comment removed'));
 			});
@@ -107,7 +107,7 @@ router.delete('/:id', (req, res) => {
 // ^^^ POST ROUTES ^^^//
 
 // COMMENT ROUTES //
-router.post('/:id/comment', (req, res) => {
+router.post('/:id/comment', auth, (req, res) => {
 	const { body } = req.body;
 	new Comment({ body }).save().then((comment) => {
 		Post.findById(req.params.id).then((post) => {
@@ -118,17 +118,23 @@ router.post('/:id/comment', (req, res) => {
 		});
 	});
 });
-router.delete('/:id/comment/:comment_id', (req, res) => {
+router.delete('/:id/comment/:comment_id', auth, (req, res) => {
 	Post.findById(req.params.id).then((post) => {
 		if (post) {
-			const newCommentArr = post.comments.filter((cId) => {
-				return cId !== req.params.comment_id;
-			});
-			post.comments = newCommentArr;
-			post.save().then(() => {
-				Comment.remove({ _id: req.params.comment_id }).then(() => {
-					res.status(200).json({ msg: 'Comment deleted', id: post._id });
-				});
+			Comment.findById(req.params.comment_id).then((comment) => {
+				if (comment && comment.user.id === req.user) {
+					const newCommentArr = post.comments.filter((cId) => {
+						return cId !== req.params.comment_id;
+					});
+					post.comments = newCommentArr;
+					post.save().then(() => {
+						Comment.remove({ _id: req.params.comment_id }).then(() => {
+							res.status(200).json({ msg: 'Comment deleted', id: post._id });
+						});
+					});
+				} else {
+					res.status(401).json({ msg: 'Not allowed to do that...' });
+				}
 			});
 		} else {
 			res.status(500).json({
@@ -139,13 +145,15 @@ router.delete('/:id/comment/:comment_id', (req, res) => {
 	});
 });
 
-router.put('/:id/comment/:comment_id', (req, res) => {
+router.put('/:id/comment/:comment_id', auth, (req, res) => {
 	const { body } = req.body;
 	Comment.findById(req.params.comment_id).then((comment) => {
-		comment.body = body;
-		comment.save().then(() => {
-			res.status(200).json({ msg: 'Comment Updated', id: req.params.id });
-		});
+		if (comment && comment.user.id === req.user) {
+			comment.body = body;
+			comment.save().then(() => {
+				res.status(200).json({ msg: 'Comment Updated', id: req.params.id });
+			});
+		}
 	});
 });
 

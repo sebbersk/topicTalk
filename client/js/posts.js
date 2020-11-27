@@ -3,7 +3,9 @@ const postContainer = document.querySelector('.post-container');
 listPosts();
 
 function listPosts() {
-	fetch('http://localhost:3000/post/')
+	fetch('http://localhost:3000/post/', {
+		headers: { Authorization: localStorage.getItem('token') },
+	})
 		.then((res) => res.json())
 		.then((data) => {
 			console.log(data);
